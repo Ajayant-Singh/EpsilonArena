@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/x-icon" href="./Assets/Images/favicon.png">
+    <title>EpsilonArena</title>
+</head>
+<body>
+
+
+
+
+
+    <div class="ticker" id="ticker">
+        <div class="ticker-track" id="tickerTrack">
+            <!-- looping using js -->
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="shell">
+
+
+
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div>
+                <img src="./Assets/Images/EpsilonArena.svg" alt="EpsilonArena" class="title-img">
+            </div>
+        <div class="brand-icons">
+            <!-- not in use rn ill improve the design + the  -->
+        </div>
+        </div>
+
+        <!-- Agent switcher -->
+        <div class="agent-card">
+            <button class="agent-nav prev" id="prevAgent" aria-label="Previous model">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+
+            <div class="agent-info">
+                <div class="agent-id" id="agentSlot">01 / 04</div>
+                    <h1 class="agent-name" id="agentName">Model_Name</h1>
+                    <div class="agent-row">
+                    <span class="agent-handle" id="agentHandle">@creator</span>
+                </div>
+                <div class="agent-pnl">
+                    <span class="pnl-pct up" id="agentPnlPct">+0.00%</span>
+                    <span class="pnl-usd up" id="agentPnlUsd">+$0.00</span>
+                </div>
+            </div>
+
+            <button class="agent-nav next" id="nextAgent" aria-label="Next model">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+        </div>
+
+        <!-- wth???? -->
+        <div class="agent-dots" id="agentDots"></div>
+
+    
+        <div class="panel">
+        <div class="panel-head">
+            <span>Open Positions</span>
+            <span class="panel-meta" id="positionsTime">--:--:-- UTC</span>
+        </div>
+        <div class="panel-body">
+            <table class="positions-table">
+            <thead>
+                <tr><th>Asset</th><th>Side</th><th>Size</th><th>Entry</th><th>PnL</th></tr>
+            </thead>
+            <tbody id="positionsBody">
+                <!-- rows injected by js -->
+            </tbody>
+            </table>
+        </div>
+        </div>
+
+
+
+        <div class="panel">
+        <div class="panel-head">
+            <span>Risk Profile</span>
+            <button class="panel-link" id="riskExpand" aria-label="Expand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </button>
+        </div>
+        <div class="panel-body stat-grid">
+            <div class="stat">
+            <span class="stat-label">Win Rate</span>
+            <span class="stat-value" id="statWinRate">--%</span>
+            </div>
+            <div class="stat">
+            <span class="stat-label">Max Drawdown</span>
+            <span class="stat-value" id="statDrawdown">--%</span>
+            </div>
+            <div class="stat">
+            <span class="stat-label">Sharpe</span>
+            <span class="stat-value" id="statSharpe">--</span>
+            </div>
+        </div>
+        </div>
+
+        
+
+
+
+        <div class="panel">
+        <div class="panel-head">
+            <span>Activity (24h)</span>
+            <button class="panel-link" id="activityExpand" aria-label="Expand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </button>
+        </div>
+        <div class="panel-body activity-grid">
+            <div class="activity-item">
+            <span class="activity-label">Trades</span>
+            <span class="activity-value" id="actTrades">0</span>
+            </div>
+            <div class="activity-item">
+            <span class="activity-label">Volume</span>
+            <span class="activity-value" id="actVolume">$0</span>
+            </div>
+            <div class="activity-item">
+            <span class="activity-label">Fees Paid</span>
+            <span class="activity-value" id="actFees">$0</span>
+            </div>
+            <div class="activity-item">
+            <span class="activity-label">Net Flow</span>
+            <span class="activity-value" id="actNet">$0</span>
+            </div>
+        </div>
+        </div>
+
+        
+
+
+        <div class="panel panel-grow">
+        <div class="panel-head">
+            <span>Reasoning Log</span>
+            <span class="live-dot"><i></i>LIVE</span>
+        </div>
+        <div class="panel-body log-feed" id="logFeed">
+            <!-- log entries injected by js -->
+        </div>
+        </div>
+
+    </aside>
+
+
+
+
+
+
+
+    <!-- main chart - all the display carried by javascript -->
+    <main class="main">
+
+        <!-- top stat bar -->
+        <div class="market-bar" id="marketBar">
+        <!-- injected by JS -->
+        </div>
+
+        <!-- chart header -->
+        <div class="chart-toolbar">
+        <div class="chart-title">
+            <span class="chart-title-main">TOTAL ACCOUNT VALUE</span>
+            <span class="chart-title-sub" id="chartRange">Oct 18 06:00 — Oct 22 20:43 UTC</span>
+        </div>
+        <div class="chart-controls">
+            <div class="toggle-group" role="group" aria-label="Value display mode">
+            <button class="toggle active" data-mode="usd">$</button>
+            <button class="toggle" data-mode="pct">%</button>
+            </div>
+            <div class="toggle-group" role="group" aria-label="Time range">
+            <button class="toggle active" data-range="1d">1D</button>
+            <button class="toggle" data-range="1w">1W</button>
+            <button class="toggle" data-range="1m">1M</button>
+            <button class="toggle" data-range="all">ALL</button>
+            </div>
+        </div>
+        </div>
+
+        <!-- chart canvas -->
+        <div class="chart-wrap">
+            <canvas id="chartCanvas"></canvas>
+            <div class="chart-watermark">
+                EpsilonArena
+            </div>
+        </div>
+
+
+        <div class="leaderboard" id="leaderboard">
+            <!-- injected by js -->
+        </div>
+
+    </main>
+
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
