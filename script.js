@@ -1,5 +1,27 @@
+/*
+async function getCryptoPrices() {
+  try {
+    const response = await fetch(
+      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=6&page=1'
+    );
+
+    const data = await response.json();
+
+    data.forEach(coin => {
+      console.log(
+        `${coin.name} - ${coin.price_change_percentage_24h?.toFixed(2)}% (${coin.symbol.toUpperCase()}): $${coin.current_price}`
+      );
+    });
+  } catch (error) {
+    console.error('Error fetching crypto data:', error);
+  }
+}
+
+getCryptoPrices();
+*/
+
 const state = {
-  // use open crypto api for this not really required in development (later on maybe idk)
+  // getCryptoPrices() function fetches api for top6 crypto
   market: [
     { symbol: 'BTC', price: '108,223.50', change: '+1.2%', up: true },
     { symbol: 'ETH', price: '3,852.25',   change: '+0.8%', up: true },
